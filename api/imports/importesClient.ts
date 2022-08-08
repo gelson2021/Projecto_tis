@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const cors = require('cors');
 
@@ -13,17 +13,6 @@ const prisma = new PrismaClient({
     ],
 })
 
-prisma.$on('warn', (e) => {
-    console.log(e)
-})
-
-prisma.$on('info', (e) => {
-    console.log(e)
-})
-
-prisma.$on('error', (e) => {
-    console.log(e)
-})
 const app = express();
 var bodyParser = require('body-parser')
 app.use(cors());
