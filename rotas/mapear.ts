@@ -40,6 +40,7 @@ app.post("/usuario/alterar", C_Usuario.alterarDados);
 app.put("/usuario/password", C_Usuario.alterarPasse);
 app.post("/usuario/listar", C_Usuario.listar);
 app.post("/usuario/remover", C_Usuario.remove);
+app.post("/usuario/login", C_Usuario.login);
 
 
 app.post("/reuniao/criar", C_Reuniao.create);
