@@ -18,7 +18,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "cor": "^0.0.0",
     "cors": "^2.8.5",
     "D": "^1.0.0"
   }
