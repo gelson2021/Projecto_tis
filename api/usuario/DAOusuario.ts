@@ -19,7 +19,7 @@ export class Usuario {
 
         const { pk_usuario, email, name, password, perfil, funcao } = request.body;
         const result = await prisma.usuario.update({
-            where : { pk_usuario : pk_usuario },
+            where: { pk_usuario: pk_usuario },
             data: {
                 "email": email,
                 "name": name,
@@ -53,10 +53,10 @@ export class Usuario {
         const { email, password } = request.body;
         const result = await prisma.usuario.findMany({
             where: {
-            AND:{
-                email:email,
-                password:password
-            }
+                AND: {
+                    email: email,
+                    password: password
+                }
             }
         });
         if (result != null) {
@@ -72,10 +72,10 @@ export class Usuario {
         const { pk_usuario } = request.body;
         const result = await prisma.usuario.findMany({
             where: {
-            pk_usuario:pk_usuario
+                pk_usuario: pk_usuario
             },
-            include:{ funcao:true }
-            
+            include: { funcao: true }
+
         });
         response.send(result);
         return result;
@@ -85,7 +85,7 @@ export class Usuario {
         const { pk_usuario } = request.body;
         const result = await prisma.usuario.delete({
             where: {
-            pk_usuario:pk_usuario
+                pk_usuario: pk_usuario
             }
         });
         response.send(result);

@@ -7,3 +7,6 @@
 #ficheiro q eu criei
 ./Documentosemtítulo1.txt
 node_modules/*
+
+#migrate
+./prisma/migrations
