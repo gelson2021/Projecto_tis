@@ -10,8 +10,6 @@ import { Reuniao } from "../api/reuniao/DAOreuniao";
 import { Depastamento } from "../api/departamento/DAOdepartamento";
 
 
-
-
 const C_Participante = new Participante();
 const C_Usuario =new Usuario()
 const C_Reuniao = new Reuniao();

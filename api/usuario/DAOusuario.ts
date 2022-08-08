@@ -64,6 +64,7 @@ export class Usuario {
 
         }
         else response.send("Usuario não encontrado");
+        
         return result;
     }
 
