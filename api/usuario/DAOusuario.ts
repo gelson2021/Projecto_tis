@@ -59,7 +59,11 @@ export class Usuario {
             }
             }
         });
-        response.send(result);
+        if (result != null) {
+            response.send(result)
+
+        }
+        else response.send("Usuario não encontrado");
         return result;
     }
 
