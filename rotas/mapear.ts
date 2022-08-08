@@ -37,7 +37,7 @@ app.post("/participante/alterar", C_Participante.alterar);
 
 app.post("/usuario/criar", C_Usuario.create);
 app.post("/usuario/alterar", C_Usuario.alterarDados);
-app.post("/usuario/password", C_Usuario.alterarPasse);
+app.put("/usuario/password", C_Usuario.alterarPasse);
 app.post("/usuario/listar", C_Usuario.listar);
 app.post("/usuario/remover", C_Usuario.remove);
 

@@ -91,9 +91,6 @@ export class Usuario {
 
 }
 
-
-
-
 import { Request, Response } from "../imports/importesClient";
 import { app } from "../imports/importesClient";
 import { Prisma } from "@prisma/client";
