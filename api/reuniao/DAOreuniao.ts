@@ -5,6 +5,7 @@ export class Reuniao {
     async create(request: Request, response: Response) {
 
         const { reuniao, participante } = request.body;
+        
         const result = await prisma.reuniao.create({
             data: {
                 "title": reuniao.title,
@@ -67,14 +68,25 @@ export class Reuniao {
 
     async remove(request: Request, response: Response) {
 
-        const { reuniao, participante } = request.body;
+        try {
+            const { reuniao, participante } = request.body;
 
         const result = await prisma.reuniao.delete({
             where: { pk_reuniao: reuniao.pk_reuniao },
 
         });
         response.send(result);
-        return result;
+   
+        } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log( '')
+                }
+            }
+            throw e
+        }
+
     }
 
 }
