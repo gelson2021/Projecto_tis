@@ -17,7 +17,7 @@ export class Usuario {
 
     async alterarDados(request: Request, response: Response) {
 
-        const { pk_usuario, email, name, password, perfil, funcao } = request.body;
+        const { pk_usuario, email, name, password, perfil, pk_funcao } = request.body;
         const result = await prisma.usuario.update({
             where: { pk_usuario: pk_usuario },
             data: {
@@ -25,7 +25,7 @@ export class Usuario {
                 "name": name,
                 "password": password,
                 "perfil": perfil == null ? "USER" : perfil,
-                "funcao": { connect: { pk_funcao: funcao } }
+                "funcao": { connect: { pk_funcao: pk_funcao } }
             }
         });
         response.send(result);
@@ -34,14 +34,14 @@ export class Usuario {
 
     async create(request: Request, response: Response) {
 
-        const { email, name, password, perfil, funcao } = request.body;
+        const { email, name, password, perfil, pk_funcao } = request.body;
         const result = await prisma.usuario.create({
             data: {
                 "email": email,
                 "name": name,
                 "password": password,
                 "perfil": perfil == null ? "USER" : perfil,
-                "funcao": { connect: { pk_funcao: funcao } }
+                "funcao": { connect: { pk_funcao: pk_funcao } }
             }
         });
         response.send(result);
