@@ -10,8 +10,6 @@ import { Reuniao } from "../api/reuniao/DAOreuniao";
 import { Depastamento } from "../api/departamento/DAOdepartamento";
 
 
-
-
 const C_Participante = new Participante();
 const C_Usuario =new Usuario()
 const C_Reuniao = new Reuniao();
@@ -21,6 +19,10 @@ const C_Sala = new Sala();
 const C_Contato = new Contato();
 const C_Prioridade_reuniao = new Prioridade();
 const C_Departamento = new Depastamento();
+
+app.get("/", (req, res)=>{
+    res.render('./views_de_test/login.ejs');
+});
 
 
 app.post("/departamento/criar", C_Departamento.create);

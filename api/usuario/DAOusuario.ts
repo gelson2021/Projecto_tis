@@ -51,7 +51,7 @@ export class Usuario {
     async login(request: Request, response: Response) {
 
         const { email, password } = request.body;
-        const result = await prisma.usuario.findMany({
+        const result = await prisma.usuario.findFirst({
             where: {
                 AND: {
                     email: email,
@@ -64,16 +64,19 @@ export class Usuario {
 
         }
         else response.send("Usuario não encontrado");
+        
         return result;
     }
 
     async listar(request: Request, response: Response) {
 
-        const { pk_usuario } = request.body;
+        //const { pk_usuario } = request.body;
+        console.log(request.body);
+        
         const result = await prisma.usuario.findMany({
-            where: {
+           /* where: {
                 pk_usuario: pk_usuario
-            },
+            },*/
             include: { funcao: true }
 
         });
