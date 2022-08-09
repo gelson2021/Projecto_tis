@@ -16,6 +16,8 @@ const prisma = new PrismaClient({
 const app = express();
 var bodyParser = require('body-parser')
 app.use(cors());
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

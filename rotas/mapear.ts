@@ -20,6 +20,10 @@ const C_Contato = new Contato();
 const C_Prioridade_reuniao = new Prioridade();
 const C_Departamento = new Depastamento();
 
+app.get("/", (req, res)=>{
+    res.render('./views_de_test/login.ejs');
+});
+
 
 app.post("/departamento/criar", C_Departamento.create);
 app.post("/departamento/listar", C_Departamento.listar);
