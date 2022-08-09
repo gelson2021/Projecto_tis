@@ -50,7 +50,6 @@ model prioridade_reuniao {
 
 model reuniao {
   title              String             @unique
-  duracao            String
   date_realizacao    DateTime
   tempo_inicio       DateTime
   tempo_final        DateTime
@@ -58,9 +57,11 @@ model reuniao {
   pk_reuniao         Int                @id @default(autoincrement())
   fk_prioridade      Int
   fk_sala            Int
-  sala               sala               @relation(fields: [fk_sala], references: [pk_sala] ,map:"reuniao_sala" )
+  usuario            usuario            @relation(fields: [fk_usuario], references: [pk_usuario], map: "reuniao_usuario")
+  sala               sala               @relation(fields: [fk_sala], references: [pk_sala], map: "reuniao_sala")
   prioridade_reuniao prioridade_reuniao @relation(fields: [fk_prioridade], references: [pk_prioridade], map: "reuniao_prioridadeId_fkey")
   participante       participante[]
+  fk_usuario         Int
 }
 
 model sala {
@@ -74,7 +75,7 @@ model sala {
 
 model usuario {
   email        String         @unique
-  name         String
+  nome         String
   password     String
   perfil       Perfil         @default(USER)
   pk_usuario   Int            @id @default(autoincrement())
@@ -82,6 +83,7 @@ model usuario {
   funcao       funcao         @relation(fields: [fk_funcao], references: [pk_funcao])
   contacto     contacto[]
   participante participante[]
+  reuniao      reuniao[]
 }
 
 enum Perfil {

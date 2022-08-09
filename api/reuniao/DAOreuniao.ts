@@ -15,7 +15,8 @@ export class Reuniao {
                 "tempo_final": reuniao.tempo_final,
                 "estado_reuniao": reuniao.estado_reuniao,
                 "prioridade_reuniao": { connect: { pk_prioridade: reuniao.prioridade_reuniao } },
-                "sala": { connect: { pk_sala: reuniao.pk_sala } }
+                "sala": { connect: { pk_sala: reuniao.pk_sala } },
+                "usuario": { connect: { pk_usuario: reuniao.pk_usuario } }
 
             }
         });
@@ -58,8 +59,8 @@ export class Reuniao {
                 "tempo_final": reuniao.tempo_final,
                 "estado_reuniao": reuniao.estado_reuniao,
                 "prioridade_reuniao": { connect: { pk_prioridade: reuniao.prioridade_reuniao } },
-                "sala": { connect: { pk_sala: reuniao.pk_sala } }
-
+                "sala": { connect: { pk_sala: reuniao.pk_sala } },
+                "usuario": { connect: { pk_usuario: reuniao.pk_usuario } }
             }
         });
         response.send(result);

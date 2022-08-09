@@ -17,12 +17,12 @@ export class Usuario {
 
     async alterarDados(request: Request, response: Response) {
 
-        const { pk_usuario, email, name, password, perfil, pk_funcao } = request.body;
+        const { pk_usuario, email, nome, password, perfil, pk_funcao } = request.body;
         const result = await prisma.usuario.update({
             where: { pk_usuario: pk_usuario },
             data: {
                 "email": email,
-                "name": name,
+                "nome": nome,
                 "password": password,
                 "perfil": perfil == null ? "USER" : perfil,
                 "funcao": { connect: { pk_funcao: pk_funcao } }
@@ -34,11 +34,11 @@ export class Usuario {
 
     async create(request: Request, response: Response) {
 
-        const { email, name, password, perfil, pk_funcao } = request.body;
+        const { email, nome, password, perfil, pk_funcao } = request.body;
         const result = await prisma.usuario.create({
             data: {
                 "email": email,
-                "name": name,
+                "nome": nome,
                 "password": password,
                 "perfil": perfil == null ? "USER" : perfil,
                 "funcao": { connect: { pk_funcao: pk_funcao } }
@@ -64,25 +64,47 @@ export class Usuario {
 
         }
         else response.send("Usuario não encontrado");
-        
+
         return result;
     }
 
     async listar(request: Request, response: Response) {
 
-        //const { pk_usuario } = request.body;
-        console.log(request.body);
-        
+        const { pk_usuario } = request.body;
+
+
         const result = await prisma.usuario.findMany({
-           /* where: {
+            /*where: {
                 pk_usuario: pk_usuario
             },*/
             include: { funcao: true }
 
-        });
+        }).catch(e => {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                    response.send("erro1");
+                }
+                else
+                    response.send("erro2");
+            }//else response.send("erro3");
+        })
+        if (result == null) console.log("nada");
+        else
+            console.log(result);
         response.send(result);
         return result;
     }
+    /*
+        promise.then(function(result) {
+            console.log(result); // "Funcionou!"
+          }, function(err) {
+            console.log(err); // Error: "Deu errado"
+          });
+          */
+
     async remove(request: Request, response: Response) {
 
         const { pk_usuario } = request.body;
