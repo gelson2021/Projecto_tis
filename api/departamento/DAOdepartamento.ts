@@ -2,51 +2,112 @@
 export class Depastamento {
 
     async create(request: Request, response: Response) {
-        console.log("tfste");
         
         const { nome } = request.body;
-
         console.log(nome);
-        
-        const result = await prisma.departamento.create({
-            data: {
-                nome: nome
+        var result1;
+        try {
+            const result = await prisma.departamento.create({
+                data: {
+                    nome: nome
+                }
+            });
+            result1 = result;
+            response.send(result);
+        } catch (e:any) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
             }
-        });
-        response.send(result);
-        return result;
+            throw e
+        }
+        return result1;
+        
     }
 
     async alterar(request: Request, response: Response) {
 
         const { pk_departamento, nome } = request.body;
-        const result = await prisma.departamento.update({
-            where: { pk_departamento: pk_departamento
-            },
-            data: {
-                nome: nome
+        var result1;
+        try {
+            const result = await prisma.departamento.update({
+                where: { pk_departamento: pk_departamento
+                },
+                data: {
+                    nome: nome
+                }
+            });
+            result1 = result;
+            response.send(result);
+        } catch (e:any) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
             }
-        });
-        response.send(result);
-        return result;
+            throw e
+        }
+        return result1;
+        
     }
 
     async listar(request: Request, response: Response) {
-        const result = await prisma.departamento.findMany({
-        });
-        response.send(result);
-        return result;
+        var result1;
+        try {
+            const result = await prisma.departamento.findMany({
+            });
+            result1 = result;
+            if(result == null)
+                response.send("lista vazia");
+            else response.send(result);
+        } catch (e:any) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
+            }
+            throw e
+        }
+        return result1;
+        
     }
 
     async remove(request: Request, response: Response) {
 
         const { pk_departamento} = request.body;
-        const result = await prisma.departamento.delete({
-            where: { pk_departamento: pk_departamento
+        var result1;
+        try {
+            const result = await prisma.departamento.delete({
+                where: { pk_departamento: pk_departamento
+                }
+            });
+            result1 = result;
+            if(result == null)
+                response.send("lista vazia");
+            else response.send(result);
+        } catch (e:any) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
             }
-        });
-        response.send(result);
-        return result;
+            throw e
+        }
+        return result1;
+        
     }
 
 }
