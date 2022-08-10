@@ -17,8 +17,10 @@ export class Prioridade {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
+                response.send(e);
                 if (e.code === 'P2002') {
                     console.log(
                         'There is a unique constraint violation, a new user cannot be created with this email'
@@ -41,10 +43,14 @@ export class Prioridade {
             });
             
             result1 = result;
-            response.send(result);
+            if(result.length === 0)response.send("lista vazia");
+            else   response.send(result);
+             
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
+                response.send(e);
                 if (e.code === 'P2002') {
                     console.log(
                         'There is a unique constraint violation, a new user cannot be created with this email'
@@ -74,8 +80,10 @@ export class Prioridade {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
+                response.send(e);
                 if (e.code === 'P2002') {
                     console.log(
                         'There is a unique constraint violation, a new user cannot be created with this email'
@@ -102,8 +110,10 @@ export class Prioridade {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
+                response.send(e);
                 if (e.code === 'P2002') {
                     console.log(
                         'There is a unique constraint violation, a new user cannot be created with this email'

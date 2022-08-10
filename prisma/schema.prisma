@@ -20,7 +20,7 @@ model departamento {
 }
 
 model edificio {
-  nome        String
+  nome        String @unique
   pk_edificio Int    @id @default(autoincrement())
   sala        sala[]
 }
@@ -51,8 +51,8 @@ model prioridade_reuniao {
 model reuniao {
   title              String             @unique
   date_realizacao    DateTime
-  tempo_inicio       DateTime
-  tempo_final        DateTime
+  data_hora_inicio       DateTime
+  data_hora_final        DateTime
   estado_reuniao     estado_reuniao     @default(ESPERA)
   pk_reuniao         Int                @id @default(autoincrement())
   fk_prioridade      Int
@@ -62,6 +62,7 @@ model reuniao {
   prioridade_reuniao prioridade_reuniao @relation(fields: [fk_prioridade], references: [pk_prioridade], map: "reuniao_prioridadeId_fkey")
   participante       participante[]
   fk_usuario         Int
+  @@unique([data_hora_inicio, fk_sala], map: "xoques_de_horario")
 }
 
 model sala {

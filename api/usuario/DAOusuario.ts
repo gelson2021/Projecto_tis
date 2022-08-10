@@ -4,32 +4,64 @@ export class Usuario {
     async alterarPasse(request: Request, response: Response) {
 
         const { pk_usuario, password } = request.body;
-        const result = await prisma.usuario.update({
-            where: { pk_usuario: pk_usuario },
-            data: {
-                "password": password,
+        var result1;
+        try {
+            
+            const result = await prisma.usuario.update({
+                where: { pk_usuario: pk_usuario },
+                data: {
+                    "password": password,
+                }
+    
+            });
+            result1 = result;
+            response.send(result);
+        } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
             }
-
-        });
-        response.send(result);
-        return result;
+            throw e
+        }
+        return result1;
     }
 
     async alterarDados(request: Request, response: Response) {
 
         const { pk_usuario, email, nome, password, perfil, pk_funcao } = request.body;
-        const result = await prisma.usuario.update({
-            where: { pk_usuario: pk_usuario },
-            data: {
-                "email": email,
-                "nome": nome,
-                "password": password,
-                "perfil": perfil == null ? "USER" : perfil,
-                "funcao": { connect: { pk_funcao: pk_funcao } }
+        var result1;
+        try {
+            
+            const result = await prisma.usuario.update({
+                where: { pk_usuario: pk_usuario },
+                data: {
+                    "email": email,
+                    "nome": nome,
+                    "password": password,
+                    "perfil": perfil == null ? "USER" : perfil,
+                    "funcao": { connect: { pk_funcao: pk_funcao } }
+                }
+            });
+            result1 = result;
+            response.send(result);
+        } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                // The .code property can be accessed in a type-safe manner
+                if (e.code === 'P2002') {
+                    console.log(
+                        'There is a unique constraint violation, a new user cannot be created with this email'
+                    )
+                }
             }
-        });
-        response.send(result);
-        return result;
+            throw e
+        }
+        return result1;
     }
 
     async create(request: Request, response: Response) {
@@ -50,6 +82,7 @@ export class Usuario {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
                 if (e.code === 'P2002') {
@@ -60,9 +93,6 @@ export class Usuario {
             }
             throw e
         }
-
-        
-        
         return result1;
     }
 
@@ -88,6 +118,7 @@ export class Usuario {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
                 if (e.code === 'P2002') {
@@ -119,10 +150,14 @@ export class Usuario {
             })
 
             result1 = result;
-            response.send(result);
+            if(result.length === 0)response.send("lista vazia");
+            else response.send(result);
+             
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados");
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
+                response.send(e);
                 if (e.code === 'P2002') {
                     console.log(
                         'There is a unique constraint violation, a new user cannot be created with this email'
@@ -157,6 +192,7 @@ export class Usuario {
             result1 = result;
             response.send(result);
         } catch (e:any) {
+            response.send("ecooreu algum erro verifica os dados"+e);
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 // The .code property can be accessed in a type-safe manner
                 if (e.code === 'P2002') {

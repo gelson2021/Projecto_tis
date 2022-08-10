@@ -1,6 +1,4 @@
 
-
-
 import { app } from "../rotas/mapear";
 
 
