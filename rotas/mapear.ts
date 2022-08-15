@@ -38,15 +38,15 @@ app.post("/participante/alterar", C_Participante.alterar);
 
 
 app.post("/usuario/criar", C_Usuario.create);
-app.post("/usuario/alterar", C_Usuario.alterarDados);
+app.put("/usuario/alterar", C_Usuario.alterarDados);
 app.put("/usuario/password", C_Usuario.alterarPasse);
-app.post("/usuario/listar", C_Usuario.listar);
-app.post("/usuario/remover", C_Usuario.remove);
-app.post("/usuario/login", C_Usuario.login);
+app.get("/usuario/listar", C_Usuario.listar);
+app.put("/usuario/remover", C_Usuario.remove);
+app.get("/usuario/login", C_Usuario.login);
 
 
 app.post("/reuniao/criar", C_Reuniao.create);
-app.post("/reuniao/listar", C_Reuniao.listar);
+app.get("/reuniao/listar", C_Reuniao.listar);
 app.post("/reuniao/remover", C_Reuniao.remove);
 app.post("/reuniao/alterar", C_Reuniao.alterar);
 
