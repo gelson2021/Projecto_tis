@@ -20,10 +20,10 @@ const C_Contato = new Contato();
 const C_Prioridade_reuniao = new Prioridade();
 const C_Departamento = new Depastamento();
 
-app.get("/", (req, res)=>{
-    res.render('./views_de_test/login.ejs');
-});
 
+app.get("/", async (req:any,res:any) => {
+    res.render('./views_de_test/login.ejs');
+})
 
 app.post("/departamento/criar", C_Departamento.create);
 app.post("/departamento/listar", C_Departamento.listar);
@@ -79,7 +79,6 @@ app.post("/prioridade/criar", C_Prioridade_reuniao.create);
 app.post("/prioridade/listar", C_Prioridade_reuniao.listar);
 app.post("/prioridade/remover", C_Prioridade_reuniao.remove);
 app.post("/prioridade/alterar", C_Prioridade_reuniao.alterar);
-
 
 
 export { app };
